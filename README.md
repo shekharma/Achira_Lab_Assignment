@@ -22,4 +22,75 @@ You should be able to run your Python program from the command line as shown in 
 
 ## Part 1
 #### In this part I used inbuilt python and OpenCV libraries and functions which generate images and some manual analysis like thresholding and contour base approach to detect the shape.
-generate_images.py file shows the basic approach to solve the problem of no data available.
+generate_images.py file shows the basic approach to solve the problem of no prior available data.
+### Explaination for the Part 1
+## Image Generation
+Constraints :
+1.  Shapes should be non-overlapping.
+2.  Shapes should randomly distrubuted.
+3.  Shapes are come from the random transformation such as scale factor=0.7 to 1.0(Image Scaling) and  angle=0 to 90 degree (Random rotation)
+
+so to follow this constraints, def is_non_overlapping() to check non-overlapping positions for shapes, after checking overlapping the def generate_random_positions() generates the shapes and for def place_shapes_with_transformations() is for image transformations.
+
+This functions combinely generate the image for the given instructions/constraints.
+The arguments used are the:
+1.  image_size=(1024,1024)
+2.  k= 4  the nmber of given shapes
+3.  shape_size=(64,64)
+4.  num_shapes(calculated)=N=int(image_size[0]**2/(k*A*shape_size[0]**2)) the A is adjusting parameter to avoid the crowd of shapes in our image i.e. more the A value less the number of shapes, less the crowd (I took A=2.5 which is gave 25 shapes for each shape type)
+
+## Shape Detection/ Image Segmentation
+Image Detection is offen we call it as image segmentation. The main task in image segmentation is to identify the boundary. So to detect the boundary i used thresholding technique
+#### Image Thresholding:
+In Image thresholding we find the optimized pixel value which help shape to separate from the background and highlight it. Adjusting the pixel values affect on our shape separation.
+To explain more:
+_, threshold=cv2.threshold(img, 25, 255, cv2.THRESH_BINARY):
+
+This line of code applies the thresholding operation to the input image img using a threshold value of 25. Pixels with intensities greater than or equal to 25 will become white (255), and pixels with intensities below 25 will become black (0).
+The thresholded image is stored in the variable threshold, while the threshold value used is stored in the dummy variable _ (underscore), which is ignored.
+
+
+#### Contour Drawing 
+Contour drawing is nothing but the boundary drawing of our shapes. Let's understand through code lines
+
+1. **cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE):**
+   - `cv2.findContours()` is a function used to find contours in a binary image.
+   - It takes three arguments:
+     - `threshold`: This is the binary image on which contours will be found. It should be a single-channel image with pixels either 0 or 255 (white or black).
+     - `cv2.RETR_TREE`: This argument specifies the retrieval mode for contours. `cv2.RETR_TREE` retrieves all of the contours and reconstructs a full hierarchy of nested contours.
+     - `cv2.CHAIN_APPROX_SIMPLE`: This argument specifies the contour approximation method. `cv2.CHAIN_APPROX_SIMPLE` compresses horizontal, vertical, and diagonal segments and leaves only their end points.
+
+2. **contours, _ = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE):**
+   - This line of code calls `cv2.findContours()` with the specified arguments and stores the result in the `contours` variable.
+   - `contours` is a list of contours found in the binary image.
+
+3. **contour_img = cv2.cvtColor(threshold, cv2.COLOR_GRAY2BGR):**
+   - `cv2.cvtColor()` is a function used to convert an image from one color space to another.
+   - Here, it converts the binary image `threshold` from grayscale (`cv2.COLOR_GRAY2BGR`) to BGR color space.
+   - The reason for this conversion is that `cv2.drawContours()` requires a color image (BGR) to draw contours on.
+
+4. **cv2.drawContours(contour_img, contours, -1, (0, 255, 0), 1):**
+   - `cv2.drawContours()` is a function used to draw contours on an image.
+   - It takes several arguments:
+     - `contour_img`: This is the color image on which contours will be drawn.
+     - `contours`: This is the list of contours to be drawn.
+     - `-1`: This argument specifies to draw all contours found in the image.
+     - `(0, 255, 0)`: This argument specifies the color of the contours. In BGR format, it represents green (0 for blue, 255 for green, and 0 for red).
+     - `1`: This argument specifies the thickness of the contour lines in pixels.
+   - After this function call, `contour_img` will have the contours drawn on it.
+
+Finally, `contour_img` will contain the original image with the contours drawn on it. You can then use this image for visualization or further processing.
+Now this 'contour_img' is used for the further calculation for labeling the image.If check the codelines in Detect_Shape.py the for loop use to iterate over each contours and performe this two main task 
+
+1.  cv2.arcLength(contour, True): This function calculates the arc length or perimeter of a contour. The contour argument is the input contour, and the second argument (True) specifies whether the contour is a closed curve or not (in this case, it's set to True).
+
+2.  epsilon = 0.038 * cv2.arcLength(contour, True): This line calculates a value (epsilon) which will be used as a parameter for the approximation of the contour. The value of epsilon is set to 3.8% (0.038) of the contour's arc length. This value determines the maximum distance from the original contour to the approximated contour. Adjusting this value will change the level of approximation; smaller values will result in more accurate contours, while larger values will result in less accurate contours.
+3.  cv2.approxPolyDP(contour, epsilon, True): This function approximates a polygonal curve to the contour. It takes the original contour (contour), the epsilon value calculated previously, and a Boolean parameter specifying whether the curve is closed or not (in this case, it's set to True). The function then returns the approximated polygonal curve.
+
+These two lines of code are used to approximate a contour with a polygonal curve, where the accuracy of the approximation is determined by the epsilon parameter, which is calculated as a fraction of the contour's arc length. Adjusting epsilon allows you to control the level of detail in the approximation.
+
+### This is the explaination for whole part1
+
+## Part 2
+### In this section of code we create our own dataset and train on YOLO(yolo5n.pt and yolo8n.pt) no any special reason to use this model.
+In this part I create dataset using bounding boxes and their position along with their labels ({0:'circle',1:'hexagon',2:'square',3:'gear'}) store those dataset into YOLO format and then train model on YOLO model.
