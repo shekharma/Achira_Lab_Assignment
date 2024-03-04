@@ -1,9 +1,11 @@
+#import libararies
 import os
 import cv2
 import numpy as np
 import random
 import argparse
 
+# function to generate non-overlapping images
 def is_non_overlapping(position, positions, shape_size):
     x, y = position
     for pos in positions:
@@ -11,7 +13,7 @@ def is_non_overlapping(position, positions, shape_size):
         if (x + shape_size[1] > px and x < px + shape_size[1]) and (y + shape_size[0] > py and y < py + shape_size[0]):
             return False
     return True
-
+# function to choose random position
 def generate_random_positions(image_size, num_shapes, shape_size):
     positions = []
     while len(positions) < num_shapes:
@@ -21,7 +23,7 @@ def generate_random_positions(image_size, num_shapes, shape_size):
         if is_non_overlapping(position, positions, shape_size):
             positions.append(position)
     return positions
-
+#function for Data Augmentation
 def place_shapes_with_transformations(image, shapes, positions, shape_size):
     for shape, position in zip(shapes, positions):
         scale_factor = random.uniform(0.75, 1.0)
