@@ -114,6 +114,9 @@ Here task is the detection you can change it for segmentation and mode is for th
 This is the whole about my work.
 I don't have any result to show, the reason behind the low computational power (CPU). If you want perform such task make sure you have GPU support.
 
+## YOLOv8 Architecture
+![239739723-57391d0f-1848-4388-9f30-88c2fb79233f](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/91947436-4d00-474c-8507-5d30c7eb084a)
+
 
 #References
    -   https://docs.ultralytics.com
