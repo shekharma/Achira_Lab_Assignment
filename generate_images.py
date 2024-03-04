@@ -2,7 +2,7 @@
 import cv2
 import numpy as np
 #img="C:/Users/Administrator/Downloads/Achira lab/image_with_shapes.png"
-img ='C:/Users/Administrator/Downloads/Achira lab/image_with_shapes_100.png' ## directory for image generated with 25 shapes each
+img ='C:/Users/Administrator/Downloads/Achira lab/image_with_shapes_transformed_100.png' ## directory for image generated with 25 shapes each
 img=cv2.imread(img,cv2.IMREAD_GRAYSCALE)
 _, threshold=cv2.threshold(img, 25, 255, cv2.THRESH_BINARY)  
 # Apply morphological operation (dilation) to smooth the edges
