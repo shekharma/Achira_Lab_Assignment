@@ -1,101 +1,72 @@
+
 import cv2
 import numpy as np
-import random
+#img="C:/Users/Administrator/Downloads/Achira lab/image_with_shapes.png"
+img ='C:/Users/Administrator/Downloads/Achira lab/image_with_shapes_transformed_101.png'
+img=cv2.imread(img,cv2.IMREAD_GRAYSCALE)
+_, threshold=cv2.threshold(img, 25, 255, cv2.THRESH_BINARY)  
+# Apply morphological operation (dilation) to smooth the edges
+#kernel = np.ones((2,2), np.uint8)
+#smoothed_img = cv2.dilate(threshold, kernel, iterations=5)
 
-# Function to check if a given position is within the non-overlapping region
-def is_non_overlapping(position, positions, shape_size):
-    x, y = position
-    for pos in positions:
-        px, py = pos
-        if (x + shape_size[1] > px and x < px + shape_size[1]) and (y + shape_size[0] > py and y < py + shape_size[0]):
-            return False
-    return True
-
-# Function to generate random non-overlapping positions for shapes
-def generate_random_positions(image_size, num_shapes, shape_size):
-    positions = []
-    while len(positions) < num_shapes:
-        x = random.randint(0, image_size[1] - shape_size[1])
-        y = random.randint(0, image_size[0] - shape_size[0])
-        position = (x, y)
-        if is_non_overlapping(position, positions, shape_size):
-            positions.append(position)
-    return positions
-
-# Function to place shapes randomly on the image
-def place_shapes(image, shapes, positions):
-    for shape, position in zip(shapes, positions):
-        x, y = position
-        image[y:y+shape.shape[0], x:x+shape.shape[1]] = shape
-    return image
-
-# Function to classify shapes based on contours and moments
-def classify_shapes(shapes):
-    classified_shapes = []
-    for shape in shapes:
-        contours, _ = cv2.findContours(shape, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        for contour in contours:
-            area = cv2.contourArea(contour)
-            perimeter = cv2.arcLength(contour, True)
-            if perimeter == 0:
-                continue  # Skip contour with zero perimeter
-            circularity = 4 * np.pi * area / (perimeter * perimeter)
-            if circularity > 0.6:
-                classified_shapes.append('Circle')
-            elif 0.5 >= circularity >= 0.2:
-                classified_shapes.append('Square')
-            elif 0.9 > circularity >= 0.5:
-                classified_shapes.append('Hexagon')
-            else:
-                classified_shapes.append('Gear')
-    return classified_shapes
-
-# Function to create bounding boxes around shapes and assign names
-def create_bounding_boxes_with_names(image, positions, shape_size, shape_names):
-    for idx, position in enumerate(positions):
-        x, y = position
-        shape_name = shape_names[idx]  # Get the predicted shape name
-        cv2.rectangle(image, (x, y), (x + shape_size[1], y + shape_size[0]), (0, 255, 0), 2)
-        cv2.putText(image, shape_name, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-    return image
-
-# Function to apply sharpening filter to the image
-def sharpen_image(image):
-    sharpened = cv2.filter2D(image, -1, np.array([[-1, -1, -1],
-                                               [-1, 9, -1],
-                                               [-1, -1, -1]]))
-    return sharpened
+contours, _ = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+contour_img = cv2.cvtColor(threshold, cv2.COLOR_GRAY2BGR)  # Convert to BGR for drawing contours
+cv2.drawContours(contour_img, contours, -1, (0, 255, 0), 1)  # Draw all contours with green color and thickness 3
 
 circle = cv2.imread("C:/Users/Administrator/Downloads/Achira lab/input_images/input_images/disc.tif", cv2.IMREAD_GRAYSCALE)
 hexagon = cv2.imread('C:/Users/Administrator/Downloads/Achira lab/input_images/input_images/hexagon.tif', cv2.IMREAD_GRAYSCALE)
 square = cv2.imread('C:/Users/Administrator/Downloads/Achira lab/input_images/input_images/square.tif', cv2.IMREAD_GRAYSCALE)
 gear = cv2.imread('C:/Users/Administrator/Downloads/Achira lab/input_images/input_images/gear.tif', cv2.IMREAD_GRAYSCALE)
 
-# Define image size
-image_size = (724, 724)
-
-# Define the number of shapes
-k = 4  # Number of different shapes
-N = 5  # Number of each shape (repetitions)
-num_shapes = N * k  # Total number of shapes
-
-# Define shape sizes
-shape_size = (64, 64)  # You can adjust this according to your shapes
-
-# Generate random positions for shapes
-positions = generate_random_positions(image_size, num_shapes, shape_size)
-
-# Randomly shuffle the shapes
-shapes = [circle, hexagon, square, gear] * N
-random.shuffle(shapes)
-
-# Apply sharpening filter to the image
-sharpened_image = sharpen_image(np.zeros(image_size, dtype=np.uint8))
-
-# Place shapes on the sharpened image
-image_with_shapes = place_shapes(sharpened_image, shapes, positions)
-
-# Display the image with shapes, bounding boxes, and names
-cv2.imshow('Image with Shapes, Bounding Boxes, and Names', image_with_shapes)
+# Initialize lists to store shape labels
+shape_labels = [square, gear, hexagon, circle]
+hexagon_no=0
+circle_no=0
+square_no=0
+gear_no=0
+N=num_shapes
+# Loop over contours to label shapes and draw labels
+for contour in contours:
+    # Approximate the contour with polygonal curves
+    epsilon = 0.038* cv2.arcLength(contour, True)  # Adjust the epsilon value as needed
+    approx = cv2.approxPolyDP(contour, epsilon, True)
+    #num_vertices = len(contour)
+    # Determine the number of vertices in the approximated contour
+    num_vertices = len(approx)
+    #print(num_vertices)
+    # Label shapes based on the number of vertices
+    if 4>= num_vertices:
+        current_shape_label='Square'
+        square_no+=1
+    elif 6>=num_vertices >4:
+        current_shape_label='Hexagon'
+        hexagon_no+=1
+    elif 8>=num_vertices > 6:
+        current_shape_label='Gear'
+        gear_no+=1
+    else:
+        current_shape_label='Circle'  # Assuming all other contours are circular
+        circle_no+=1
+    # Draw the approximated contour on the image
+    cv2.polylines(contour_img, [approx], True, (0, 0, 255), 1)  # Draw the approximated contour in red with thickness 1
+    
+    # Get the centroid of the contour
+    M = cv2.moments(approx)
+    cX = int(M["m10"] / M["m00"])
+    cY = int(M["m01"] / M["m00"])
+    
+    # Calculate the position for writing the label
+    label_pos = (cX-10 , cY)  # Adjust the offset (10 pixels to the right of the centroid)
+    
+    # Write the label on the image
+    cv2.putText(contour_img, current_shape_label, label_pos, cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0, 0, 0), 1)
+    
+# Display the image with contours and labeled shapes
+cv2.imshow('Threshold', threshold)
+cv2.imshow('Image with Contours and Labeled Shapes', contour_img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
+print(f'circle_no:{circle_no},square_no:{square_no}, gear_no:{gear_no}, hexagon_no:{hexagon_no}')
+print(f'circles_acc:{circle_no*k/N}, square_acc:{square_no*k/N}, gear_acc:{gear_no*k/N}, hexagon_acc:{hexagon_no*k/N}')
+
