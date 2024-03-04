@@ -2,7 +2,7 @@
 import cv2
 import numpy as np
 #img="C:/Users/Administrator/Downloads/Achira lab/image_with_shapes.png"
-img ='C:/Users/Administrator/Downloads/Achira lab/image_with_shapes_transformed_101.png'
+img ='C:/Users/Administrator/Downloads/Achira lab/image_with_shapes_transformed_100.png' ## directory for image generated with 25 shapes each
 img=cv2.imread(img,cv2.IMREAD_GRAYSCALE)
 _, threshold=cv2.threshold(img, 25, 255, cv2.THRESH_BINARY)  
 # Apply morphological operation (dilation) to smooth the edges
@@ -20,11 +20,8 @@ gear = cv2.imread('C:/Users/Administrator/Downloads/Achira lab/input_images/inpu
 
 # Initialize lists to store shape labels
 shape_labels = [square, gear, hexagon, circle]
-hexagon_no=0
-circle_no=0
-square_no=0
-gear_no=0
-N=num_shapes
+N=10   ## each shape repeatation
+k=4 ## no .of shapes
 # Loop over contours to label shapes and draw labels
 for contour in contours:
     # Approximate the contour with polygonal curves
@@ -37,16 +34,16 @@ for contour in contours:
     # Label shapes based on the number of vertices
     if 4>= num_vertices:
         current_shape_label='Square'
-        square_no+=1
+        
     elif 6>=num_vertices >4:
         current_shape_label='Hexagon'
-        hexagon_no+=1
+        
     elif 8>=num_vertices > 6:
         current_shape_label='Gear'
-        gear_no+=1
+        
     else:
         current_shape_label='Circle'  # Assuming all other contours are circular
-        circle_no+=1
+        
     # Draw the approximated contour on the image
     cv2.polylines(contour_img, [approx], True, (0, 0, 255), 1)  # Draw the approximated contour in red with thickness 1
     
@@ -64,9 +61,10 @@ for contour in contours:
 # Display the image with contours and labeled shapes
 cv2.imshow('Threshold', threshold)
 cv2.imshow('Image with Contours and Labeled Shapes', contour_img)
+cv2.imwrite('before_cotour.png', threshold)
+cv2.imwrite('after_contour.png', contour_img)
+
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-print(f'circle_no:{circle_no},square_no:{square_no}, gear_no:{gear_no}, hexagon_no:{hexagon_no}')
-print(f'circles_acc:{circle_no*k/N}, square_acc:{square_no*k/N}, gear_acc:{gear_no*k/N}, hexagon_acc:{hexagon_no*k/N}')
 
