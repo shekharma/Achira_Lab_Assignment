@@ -20,6 +20,9 @@ You should be able to run your Python program from the command line as shown in 
 5. The images required for the test are in the Google Drive folder shared with you over email.
 6. Upload your results to a public github repo and send it to us. Please document what you ##did in a top level README.md
 
+Might the problem creates little confusion.This is small picture will give you idea about the difference between image classification, localization and detection.
+![cat](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/3dbcb61d-43b8-4be7-b3bd-72256a9e8b00)
+
 ## Part 1
 #### In this part I used inbuilt python and OpenCV libraries and functions which generate images and some manual analysis like thresholding and contour base approach to detect the shape.
 generate_images.py file shows the basic approach to solve the problem of no prior available data.
