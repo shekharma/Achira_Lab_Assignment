@@ -94,6 +94,9 @@ These two lines of code are used to approximate a contour with a polygonal curve
 
 ### Result
 You can see the result of this part in file before_contour.png, after_contour.png.
+![after_contour](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/d35a4fd8-91bb-46f3-8b85-dcbed367155c) ![before_cotour](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/9a13fc56-cfb8-4e3b-a0dc-7d392790c432)
+
+
 
 ## Part 2
 ### In this section of code we create our own dataset and train on YOLO(yolo5n.pt and yolo8n.pt) no any special reason to use this model.
