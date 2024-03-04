@@ -113,6 +113,6 @@ I don't have any result to show, the reason behind the low computational power (
 
 
 #References
-https://docs.ultralytics.com
-https://learnopencv.com/contour-detection-using-opencv-python-c/
+   -   https://docs.ultralytics.com
+   -   https://learnopencv.com/contour-detection-using-opencv-python-c/
 
