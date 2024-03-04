@@ -89,6 +89,8 @@ Now this 'contour_img' is used for the further calculation for labeling the imag
 
 These two lines of code are used to approximate a contour with a polygonal curve, where the accuracy of the approximation is determined by the epsilon parameter, which is calculated as a fraction of the contour's arc length. Adjusting epsilon allows you to control the level of detail in the approximation.
 
+### Result
+You can see the result of this part in file before_contour.png, after_contour.png.
 
 ## Part 2
 ### In this section of code we create our own dataset and train on YOLO(yolo5n.pt and yolo8n.pt) no any special reason to use this model.
