@@ -98,16 +98,16 @@ In this part I create dataset using bounding boxes and their position along with
 ### Image Generation
 In this part, I used same code skeleton to generate the non-overlapping, scaled and rotated images. Python script is in gen_images.py
 The user arguments for the script are the directory of input shapes (circle, hexagon, square, gear), size of the image that you want to generate like 1024x1024 and the number of images that you want eg. 100 images.
-Command line for this is python3 gen_images.py --input input_images/ --out-dims 1024 1024 --nout 1000
+   -   Command line for this is python3 gen_images.py --input input_images/ --out-dims 1024 1024 --nout 1000
 
 ### Data labeling
 To detect the shape in an image we want a dataset where we can give the label data with their position. The general YOLO format for the such data is <label> <centre_x> <centre_y> <width_of_object> <height_of_object>. There are other formats are also for such a task which depends on the what model are you using. This position of label is normalized using image size. For centr_x and width_of_object we divided by the width of image and for centre_y and height_of_object we divided by the height of image. You can see the results in image_994.txt file.
-Note:- while creating labels for YOLO save the images and labels with same names like for images image_994.jpg and label and annotation image_994.txt.
+   -   Note:- while creating labels for YOLO save the images and labels with same names like for images image_994.jpg and label and annotation image_994.txt.
 
 ### Model training
 Here I tried the pre-trained YOLO models yolov5 and yolo8 there is no any special reason to use this models, but the trainig and prediction is pretty easy no need to write number of code lines.
 code line is
-!yolo task=detect mode=train data=coco8.yaml model=yolov8n.pt epochs=100 imgsz=640
+   -   !yolo task=detect mode=train data=coco8.yaml model=yolov8n.pt epochs=100 imgsz=640
 here task is the detection you can change it for segmentation and mode is for the training and prediction if you want to pass more arguments like batch_size and any other you can extend the code line with that argument.
 
 This is the whole about my work.
