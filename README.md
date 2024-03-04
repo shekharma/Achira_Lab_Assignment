@@ -93,3 +93,11 @@ These two lines of code are used to approximate a contour with a polygonal curve
 ## Part 2
 ### In this section of code we create our own dataset and train on YOLO(yolo5n.pt and yolo8n.pt) no any special reason to use this model.
 In this part I create dataset using bounding boxes and their position along with their labels ({0:'circle',1:'hexagon',2:'square',3:'gear'}) store those dataset into YOLO format and then train model on YOLO model.
+### Image Generation
+In this part, I used same code skeleton to generate the non-overlapping, scaled and rotated images. Python script is in gen_images.py
+The user arguments for the script are the directory of input shapes (circle, hexagon, square, gear), size of the image that you want to generate like 1024x1024 and the number of images that you want eg. 100 images.
+Command line for this is python3 gen_images.py --input input_images/ --out-dims 1024 1024 --nout 1000
+
+### Data labeling
+To detect the shape in an image we want a dataset where we can give the label data with their position. The general YOLO format for the such data is <label> <centre_x> <centre_y> <width_of_object> <height_of_object>. There are other formats are also for such a task which depends on the what model are you using. This position of label is normalized using image size. For centr_x and width_of_object we divided by the width of image and for centre_y and height_of_object we divided by the height of image. You can see the results in annotations.txt file.
+
