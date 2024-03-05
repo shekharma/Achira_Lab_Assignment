@@ -103,8 +103,9 @@ You can see the result of this part in file before_contour.png, after_contour.pn
 
 
 ## Part 2
-### In this section of code we create our own dataset and train on YOLO(yolo5n.pt and yolo8n.pt) no any special reason to use this model.
-In this part I create dataset using bounding boxes and their position along with their labels ({0:'circle',1:'hexagon',2:'square',3:'gear'}) store those dataset into YOLO format and then train model on YOLO model.
+### Deep learning approach
+In this section of code we create our own dataset and train on YOLO(yolo5n.pt and yolo8n.pt) no any special reason to use this model.
+
 ### Image Generation
 In this part, I used same code skeleton to generate the non-overlapping, scaled and rotated images. Python script is in gen_images.py
 The user arguments for the script are the directory of input shapes (circle, hexagon, square, gear), size of the image that you want to generate like 1024x1024 and the number of images that you want eg. 100 images.
