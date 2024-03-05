@@ -26,7 +26,7 @@ Might the problem creates little confusion.This is small picture will give you i
 ## Part 1
 #### In this part I used inbuilt python and OpenCV libraries and functions which generate images and some manual analysis like thresholding and contour base approach to detect the shape.
 generate_images.py file shows the basic approach to solve the problem of no prior available data.
-### Explaination for the Part 1
+
 ## Image Generation
 Constraints :
 1.  Shapes should be non-overlapping.
