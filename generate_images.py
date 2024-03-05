@@ -29,16 +29,16 @@ for contour in contours:
     approx = cv2.approxPolyDP(contour, epsilon, True)
     #num_vertices = len(contour)
     # Determine the number of vertices in the approximated contour
-    num_vertices = len(approx)
-    #print(num_vertices)
+    num_sides = len(approx)
+    #print(num_sides)
     # Label shapes based on the number of vertices
-    if 4>= num_vertices:
+    if 4>= num_sides:
         current_shape_label='Square'
         
-    elif 6>=num_vertices >4:
+    elif 6>=num_sides >4:
         current_shape_label='Hexagon'
         
-    elif 8>=num_vertices > 6:
+    elif 8>=num_sides > 6:
         current_shape_label='Gear'
         
     else:
