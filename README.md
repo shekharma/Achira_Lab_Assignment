@@ -112,7 +112,8 @@ The user arguments for the script are the directory of input shapes (circle, hex
 
 Generated Image 1 | Generated Image 2 
  :---------------------------------------------:|:--------------------------------: |
- ![image](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/404087ef-4ab3-48ef-b659-9663fae5da39) |
+ ![image](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/404087ef-4ab3-48ef-b659-9663fae5da39) | ![image](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/ddc21e6c-d3a8-4fb8-b7a1-21b7d2636f2a)
+
 
 ### Data labeling
 To detect the shape in an image we want a dataset where we can give the label data with their position. The general YOLO format for the such data is <label> <centre_x> <centre_y> <width_of_object> <height_of_object>. There are other formats are also for such a task which depends on the what model are you using. This position of label is normalized using image size. For centr_x and width_of_object we divided by the width of image and for centre_y and height_of_object we divided by the height of image. You can see the results in image_994.txt file.
