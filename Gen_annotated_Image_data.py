@@ -41,7 +41,7 @@ def place_shapes_with_transformations(image, shapes, positions, shape_size):
         rotated_shape = cv2.warpAffine(resized_shape, rotation_matrix, (cols, rows))
         
         new_shape_size = rotated_shape.shape[::-1]
-
+        # shape_size[1]-new_shape_size[1]  is difference between original shape and rotated shape
         x = position[0] + (shape_size[1] - new_shape_size[1]) // 2
         y = position[1] + (shape_size[0] - new_shape_size[0]) // 2
         
@@ -49,11 +49,15 @@ def place_shapes_with_transformations(image, shapes, positions, shape_size):
         
         centre_x = (x + x + new_shape_size[0]) // 2
         centre_y = (y + y + new_shape_size[1]) // 2
+
+        # Dimension normalization
         centre_x = centre_x / output_dims
         centre_y = centre_y / output_dims
         
         width = new_shape_size[1]
         height = new_shape_size[0]
+        
+        #Dimension normalize
         width = width / output_dims
         height = height / output_dims
         
