@@ -96,7 +96,8 @@ These two lines of code are used to approximate a contour with a polygonal curve
 You can see the result of this part in file before_contour.png, after_contour.png.
  Image After the contour drwaing and detection. | Image before the contour drawing. | Original Image
  :---------------------------------------------:|:--------------------------------: | :-----------------------------: |
-![after_contour](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/d35a4fd8-91bb-46f3-8b85-dcbed367155c) | ![before_cotour](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/9a13fc56-cfb8-4e3b-a0dc-7d392790c432) |![image_with_shapes_100](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/12dfa9a1-31d4-4b34-8ba8-0ac8b655638f)
+![after_contour](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/d35a4fd8-91bb-46f3-8b85-dcbed367155c) | ![before_cotour](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/9a13fc56-cfb8-4e3b-a0dc-7d392790c432) | ![image_with_shapes_transformed_100](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/5c7778d4-4d7a-4b78-b2e9-14dd1441c602)
+
 
 
 
