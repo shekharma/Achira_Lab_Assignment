@@ -47,7 +47,7 @@ Image Detection is offen we call it as image segmentation. The main task in imag
 #### Image Thresholding:
 In Image thresholding we find the optimized pixel value which help shape to separate from the background and highlight it. Adjusting the pixel values affect on our shape separation.
 To explain more:
-_, threshold=cv2.threshold(img, 25, 255, cv2.THRESH_BINARY):
+   -   _, threshold=cv2.threshold(img, 25, 255, cv2.THRESH_BINARY):
 
 This line of code applies the thresholding operation to the input image img using a threshold value of 25. Pixels with intensities greater than or equal to 25 will become white (255), and pixels with intensities below 25 will become black (0).
 The thresholded image is stored in the variable threshold, while the threshold value used is stored in the dummy variable _ (underscore), which is ignored.
