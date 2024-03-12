@@ -5,7 +5,7 @@ output_directory = "../Annotated_data/"
 # Create the output directory if it doesn't exist
 os.makedirs(output_directory, exist_ok=True)
 
-# Loop through 1000 iterations to create images
+# Loop through 200 iterations to create images
 for i in range(200):
     # Generate random positions for shapes
     positions = generate_random_positions(image_size, num_shapes, shape_size)
