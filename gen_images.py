@@ -5,6 +5,8 @@ import numpy as np
 import random
 import argparse
 
+# input_images= directory for the shapes (disc, hexagon, square, and gear)
+
 # function to generate non-overlapping images
 def is_non_overlapping(position, positions, shape_size):
     x, y = position
@@ -23,9 +25,11 @@ def generate_random_positions(image_size, num_shapes, shape_size):
         if is_non_overlapping(position, positions, shape_size):
             positions.append(position)
     return positions
-#function for Data Augmentation
+
 def place_shapes_with_transformations(image, shapes, positions, shape_size):
     for shape, position in zip(shapes, positions):
+        
+        # Function for data augmentation 
         scale_factor = random.uniform(0.75, 1.0)
         angle = random.uniform(0, 90)
         
