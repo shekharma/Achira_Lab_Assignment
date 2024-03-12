@@ -1,3 +1,8 @@
+########## Note ################
+### Run after gen_images.py ###
+###############################
+
+
 import os
 # Define the directories
 annotation_dir = "/provide/path"  # Directory containing original annotation files
