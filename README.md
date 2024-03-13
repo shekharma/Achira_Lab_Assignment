@@ -123,7 +123,7 @@ To detect the shape in an image we want a dataset where we can give the label da
 ### Model training
 Here I tried the pre-trained YOLO models yolov5 and yolo8 there is no any special reason to use this models, but the trainig and prediction is pretty easy no need to write number of code lines.
 code line is
-   -   !yolo task=detect mode=train data=coco8.yaml model=yolov8n.pt epochs=100 imgsz=640
+   -   !yolo task=detect mode=train data=data.yaml model=yolov8n.pt epochs=100 imgsz=640
 
 Here task is the detection you can change it for segmentation and mode is for the training and prediction if you want to pass more arguments like batch_size and any other you can extend the code line with that argument.
 
