@@ -43,14 +43,14 @@ The arguments used are the:
 4.  num_shapes(calculated)=N=int(image_size[0]**2/(k*A*shape_size[0]**2)) the A is adjusting parameter to avoid the crowd of shapes in our image i.e. more the A value less the number of shapes, less the crowd (I took A=2.5 which is gave 25 shapes for each shape type)
 
 ## Shape Detection/ Image Segmentation
-Image Detection is offen we call it as image segmentation. The main task in image segmentation is to identify the boundary. So to detect the boundary i used thresholding technique
+Image Detection is offen we call it as image localization + classification. The main task in image detection is to identify the boundary. So to detect the boundary i used thresholding technique
 #### Image Thresholding:
-In Image thresholding we find the optimized pixel value which help shape to separate from the background and highlight it. Adjusting the pixel values affect on our shape separation.
+In Image thresholding we find the optimized pixel value which separates the shape from the background and highlight it. Adjusting the pixel values affect on our shape separation.
 To explain more:
    -   _, threshold=cv2.threshold(img, 25, 255, cv2.THRESH_BINARY):
 
-This line of code applies the thresholding operation to the input image img using a threshold value of 25. Pixels with intensities greater than or equal to 25 will become white (255), and pixels with intensities below 25 will become black (0).
-The thresholded image is stored in the variable threshold, while the threshold value used is stored in the dummy variable _ (underscore), which is ignored.
+This line of code applies the thresholding operation to the input image(img) using a threshold value of 25. Pixels with intensities greater than or equal to 25 will become white (255), and pixels with intensities below 25 will become black (0).
+The thresholded image is stored in the variable threshold, while the threshold value used is stored in the dummy variable _ (underscore), which is ignored. Once we separate our shapes from background next we have to find the category of shape and that can be done by seeing the boudary of shape and for that we are drawing contours.
 
 
 #### Contour Drawing 
@@ -65,7 +65,7 @@ Contour drawing is nothing but the boundary drawing of our shapes. Let's underst
 
 2. **contours, _ = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE):**
    - This line of code calls `cv2.findContours()` with the specified arguments and stores the result in the `contours` variable.
-   - `contours` is a list of contours found in the binary image.
+   - `contours` is a list of contours(disc,gear,square,hexagon) found in the binary image.
 
 3. **contour_img = cv2.cvtColor(threshold, cv2.COLOR_GRAY2BGR):**
    - `cv2.cvtColor()` is a function used to convert an image from one color space to another.
@@ -117,7 +117,7 @@ Generated Image 1 | Generated Image 2
 
 
 ### Data labeling
-To detect the shape in an image we want a dataset where we can give the label data with their position. The general YOLO format for the such data is <label> <centre_x> <centre_y> <width_of_object> <height_of_object>. There are other formats are also for such a task which depends on the what model are you using. This position of label is normalized using image size. For centre_x and width_of_object we divided by the width of image and for centre_y and height_of_object we divided by the height of image. You can see the results in image_994.txt file.
+To detect the shape in an image we want a dataset where we can give the label data with their position. The general YOLO format for the such data is <label> <centre_x> <centre_y> <width_of_object> <height_of_object>. There are other formats are also for such a task which depends on the what model you are using. This position of label is normalized using image size. For centre_x and width_of_object we divided by the width of image and for centre_y and height_of_object we divided by the height of image. You can see the results in image_994.txt file.
    -   Note:- while creating labels for YOLO save the images and labels with same names like for images image_994.jpg and label and annotation image_994.txt.
 
 ### Model training
