@@ -33,7 +33,7 @@ Constraints :
 2.  Shapes should randomly distrubuted.
 3.  Shapes are come from the random transformation such as scale factor=0.7 to 1.0(Image Scaling) and  angle=0 to 90 degree (Random rotation)
 
-so to follow this constraints, def is_non_overlapping() to check non-overlapping positions for shapes, after checking overlapping the def generate_random_positions() generates the shapes and for def place_shapes_with_transformations() is for image transformations.
+so to follow this constraints, is_non_overlapping() function to check non-overlapping positions for shapes, after checking overlapping the generate_random_positions() function generates the shapes and place_shapes_with_transformations() function for image transformations.
 
 This functions combinely generate the image for the given instructions/constraints.
 The arguments used are the:
