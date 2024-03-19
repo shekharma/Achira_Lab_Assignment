@@ -132,6 +132,8 @@ I don't have any result to show, the reason behind the low computational power (
 
 ## YOLOv8 Architecture
 YOLO is consists of three subparts Backbone, Neck and Head. Let's discuss in detail...
+![image](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/a1f12276-49ff-4d7f-90a3-d6a27ad1b664)
+
 ### 1.Backbone
    -   CSPDarknet53 is a convolutional neural network (CNN) architecture designed for computer vision tasks, particularly for object detection and image classification. It is an extension of the Darknet neural network architecture, which gained popularity in the field of deep learning, especially in the context of object detection.
 
