@@ -22,6 +22,7 @@ You should be able to run your Python program from the command line as shown in 
 
 Might the problem creates little confusion.This is small picture will give you idea about the difference between image classification, localization and detection.
 ![cat](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/3dbcb61d-43b8-4be7-b3bd-72256a9e8b00)
+https://www.researchgate.net/publication/351889219/figure/fig1/AS:1027883464142848@1622077923275/The-model-architecture-of-YOLO-where-the-backbone-extracts-features-from-an-image-the.png
 
 ## Part 1
 #### In this part I used inbuilt python and OpenCV libraries and functions which generate images and some manual analysis like thresholding and contour base approach to detect the shape.
