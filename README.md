@@ -215,5 +215,6 @@ Non-maximum suppression helps to improve the precision and reliability of object
 
 #References
    -   https://docs.ultralytics.com
+   -   Redmon, J., Divvala, S., Girshick, R., & Farhadi, A. (2016). You only look once: Unified, real-time object detection (doi.org/10.48550/arXiv.1506.02640)
    -   https://learnopencv.com/contour-detection-using-opencv-python-c/
 
