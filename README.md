@@ -43,7 +43,7 @@ The arguments used are the:
 3.  shape_size=(64,64)
 4.  num_shapes(calculated)=N=int(image_size[0]**2/(k*A*shape_size[0]**2)) the A is adjusting parameter to avoid the crowd of shapes in our image i.e. more the A value less the number of shapes, less the crowd (I took A=2.5 which is gave 25 shapes for each shape type)
 
-## Shape Detection/ Image Segmentation
+## Shape Detection
 Image Detection is offen we call it as image localization + classification. The main task in image detection is to identify the boundary. So to detect the boundary i used thresholding technique
 #### Image Thresholding:
 In Image thresholding we find the optimized pixel value which separates the shape from the background and highlight it. Adjusting the pixel values affect on our shape separation.
