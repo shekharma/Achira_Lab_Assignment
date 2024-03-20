@@ -22,7 +22,7 @@ You should be able to run your Python program from the command line as shown in 
 
 Might the problem creates little confusion.This is small picture will give you idea about the difference between image classification, localization and detection.
 ![cat](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/3dbcb61d-43b8-4be7-b3bd-72256a9e8b00)
-https://www.researchgate.net/publication/351889219/figure/fig1/AS:1027883464142848@1622077923275/The-model-architecture-of-YOLO-where-the-backbone-extracts-features-from-an-image-the.png
+
 
 ## Part 1
 #### In this part I used inbuilt python and OpenCV libraries and functions which generate images and some manual analysis like thresholding and contour base approach to detect the shape.
@@ -134,7 +134,7 @@ I don't have any result to show, the reason behind the low computational power (
 ## YOLOv8 Architecture
 YOLO is consists of three subparts Backbone, Neck and Head. Let's discuss in detail...
 ![image](https://github.com/shekharma/Achira_Lab_Assignment/assets/122733304/a1f12276-49ff-4d7f-90a3-d6a27ad1b664)
-
+https://www.researchgate.net/publication/351889219/figure/fig1/AS:1027883464142848@1622077923275/The-model-architecture-of-YOLO-where-the-backbone-extracts-features-from-an-image-the.png
 ### 1.Backbone
    -   CSPDarknet53 is a convolutional neural network (CNN) architecture designed for computer vision tasks, particularly for object detection and image classification. It is an extension of the Darknet neural network architecture, which gained popularity in the field of deep learning, especially in the context of object detection.
 
